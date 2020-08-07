@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (Globals.paused)
+            return;
         if (health > 0) {
             hpBar.transform.localScale = new Vector3(health / MAX_HP, hpBar.transform.localScale.y, hpBar.transform.localScale.z);
         }
@@ -46,6 +48,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        if (Globals.paused)
+            return;
         Vector3 mp = Input.mousePosition;
         turret.GetComponent<Turret>().target = Camera.main.ScreenToWorldPoint(new Vector3(mp.x, mp.y, mp.z)) - transform.position;
         if (Input.GetMouseButtonDown(0)) {
