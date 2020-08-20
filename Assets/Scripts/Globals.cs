@@ -5,7 +5,8 @@ using UnityEngine;
 public class Globals : MonoBehaviour
 {
 
-    public GameObject button;
+    public GameObject pausedTextObject;
+    public GameObject hintText;
     public static bool paused = true;
 
     // Start is called before the first frame update
@@ -17,12 +18,11 @@ public class Globals : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
-
-    public void onPlay() 
-    {
-        paused = false;
-        button.SetActive(false);
+        if (Input.GetMouseButton(0))
+            paused = false;
+        if (Input.GetKey(KeyCode.Space))
+            paused = !paused;
+        pausedTextObject.SetActive(paused);
+        hintText.SetActive(paused);
     }
 }

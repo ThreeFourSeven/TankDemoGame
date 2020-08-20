@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -50,9 +52,14 @@ public class Player : MonoBehaviour
     {
         if (Globals.paused)
             return;
+        if (health < 0.0f)
+        {
+            SceneManager.LoadScene("SampleScene");
+            Globals.paused = true;
+        }
         Vector3 mp = Input.mousePosition;
         turret.GetComponent<Turret>().target = Camera.main.ScreenToWorldPoint(new Vector3(mp.x, mp.y, mp.z)) - transform.position;
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) {
             Vector3 d = turret.GetComponent<Turret>().GetDirection();
             Vector3 p = transform.position - new Vector3(0, 0, -.5f);
             GameObject go = Instantiate(bulletObject, p, Quaternion.identity);

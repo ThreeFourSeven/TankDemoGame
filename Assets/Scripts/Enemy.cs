@@ -50,6 +50,11 @@ public class Enemy : MonoBehaviour
         }
         else {
             hpBar.transform.localScale = new Vector3(0.0f, hpBar.transform.localScale.y, hpBar.transform.localScale.z);
+            float v = Random.Range(0.0f, 1.0f);
+            if (v <= hpDropChance)
+            {
+                Instantiate(hpDrop, transform.position, Quaternion.identity);
+            }
             Destroy(gameObject);
         }
 
@@ -90,11 +95,7 @@ public class Enemy : MonoBehaviour
 
     void OnDestroy()
     {
-        float v = Random.Range(0.0f, 1.0f);
-        if (v <= hpDropChance)
-        {
-            Instantiate(hpDrop, transform.position, Quaternion.identity);
-        }
+        
 
     }
 
