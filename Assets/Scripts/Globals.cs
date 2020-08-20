@@ -20,7 +20,7 @@ public class Globals : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
             paused = false;
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
             paused = !paused;
         pausedTextObject.SetActive(paused);
         hintText.SetActive(paused);
