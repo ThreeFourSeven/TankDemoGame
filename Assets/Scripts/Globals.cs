@@ -18,7 +18,7 @@ public class Globals : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.touchCount > 0)
             paused = false;
         if (Input.GetKey(KeyCode.Space))
             paused = !paused;
